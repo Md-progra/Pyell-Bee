@@ -19,6 +19,10 @@ def listen_convert_to_text():
             print("Sorry, I couldn't understand what you said")
             messagebox.showerror("Error", "Sorry, I couldn't understand what you said")
             return "Sorry, I couldn't understand what you said"
+        except sr.RequestError as e:
+            print(f"Sorry, I couldn't request results; {e}")
+            messagebox.showerror("Error", f"Sorry, I couldn't request results; {e}")
+            return f"Sorry, I couldn't request results; {e}"        # Creating error handling for the function
 
 # Creating a function to spell back to user
 def spell_back_in_audio(text):
