@@ -1,5 +1,4 @@
 
-"""
 import pyttsx3
 import speech_recognition as sr
 import time 
@@ -61,46 +60,5 @@ button.pack(padx=10, pady=10)
 
 root.mainloop()  # running the GUI
 
-"""
 
-import pyttsx3
-import speech_recognition as sr
-import time
-
-def listen_convert_to_text():
-    recognizer = sr.Recognizer()
-    with sr.Microphone() as source:
-        recognizer.adjust_for_ambient_noise(source)
-        print("Listening to you...")
-        audio = recognizer.listen(source)
-        print("Recognizing...")
-        try:
-            text = recognizer.recognize_google(audio)
-            print(f"You said: {text}")
-            return text
-        except sr.UnknownValueError:
-            print("Sorry, I couldn't understand what you said")
-            return "Sorry, I couldn't understand what you said"
-        except sr.RequestError as e:
-            print(f"Sorry, I couldn't request results; {e}")
-            return f"Sorry, I couldn't request results; {e}"
-
-def spell_back_in_audio(text):
-    engine = pyttsx3.init()  # initializing the engine
-    engine.setProperty('rate', 150)  # setting the rate of speech
-    words = text.split()
-    for word in words:
-        engine.say(word)
-        engine.runAndWait()
-
-def main():
-    while True:
-        text = listen_convert_to_text()
-        spell_back_in_audio(text)
-        choice = input("Continue? (y/n): ")
-        if choice.lower() != 'y':
-            break
-
-if __name__ == "__main__":
-    main()
 
